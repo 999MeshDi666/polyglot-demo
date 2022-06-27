@@ -32,7 +32,11 @@ if (synth.onvoiceschanged !== undefined) {
 const Speech = () => {
   const [synthWord, setSynthWord] = useState();
   const [speechWord, setSpeechWord] = useState();
-  const [lang, setLang] = useState("all");
+  const [currentLang, setCurrentLang] = useState({
+    lang: "all",
+    name: "All",
+    isChecked: false,
+  });
   const [checkBox, setCheckBox] = useState([
     {
       lang: "all",
@@ -76,22 +80,21 @@ const Speech = () => {
 
     setSynthWord(randWord);
   };
-  const handleChooseLang = (langParam) => {
-    
-    setCheckBox((prevCheckBox)=>prevCheckBox.map((box)=>{
-          if(box.lang===langParam){
-            return {...box,isChecked:!box.isChecked}
-        }else return box;
-        if(box.lang==="all" && langParam==="all"){
-            return {...box,isChecked:    }
-        }
-    }))
+  const handleChooseLang = ({ lang, name, isChecked }) => {
+    setCheckBox((prevCheckBox) =>
+      prevCheckBox.map((box) => {
+        if (box.lang === lang) {
+          return { ...box, isChecked: !box.isChecked };
+        } else return box;
+      })
+    );
 
-    setLang(langParam);
-
-};
-
-console.log(checkBox);
+    setCurrentLang({
+      name,
+      lang,
+      isChecked: !isChecked,
+    });
+  };
 
   return (
     <div className="speech-block">
@@ -103,9 +106,15 @@ console.log(checkBox);
               type="checkbox"
               id={item.lang}
               className="speechLang"
-              onChange={() => handleChooseLang(item.lang)}
+              onChange={() => handleChooseLang(item)}
               checked={item.isChecked}
-            //   disabled={!item.isChecked && item.lang!=="all" ? true : false}
+              disabled={
+                currentLang.lang === "all" &&
+                currentLang.isChecked &&
+                item.lang !== "all"
+                  ? true
+                  : false
+              }
             ></input>
           </fieldset>
         ))}
