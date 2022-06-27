@@ -5,9 +5,58 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  margin: 0;
+  background-color: rgb(28, 29, 29);
 }
-
+h1,h2,h3,h4,h5,h6{
+  padding: 0;
+  margin: 0;
+}
+fieldset{
+  border: none;
+  outline: none;
+}
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+.container{
+  padding: 10px;
+  width: 850px;
+  height: 450px;
+  box-sizing: border-box;
+  margin: 150px auto;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: teal;
+}
+
+.speech-title{
+  color: #fff;
+  text-transform: uppercase;
+  text-align: center;
+}
+.speech-btn{
+  width: 150px;
+  padding: 8px;
+  box-sizing: border-box;
+  border-radius: 10px;
+  background-color: teal;
+  color: #fff;
+  border: 2px rgb(91, 146, 137) solid;
+  margin-top: 15px;
+  cursor: pointer;
+}
+.speech-btn:active{
+  background-color: rgb(2, 98, 98);
+}
+.check{
+  margin-right: 15px;
+  display: flex;
+}
+.speechLang{
+  cursor: pointer;
 }
